@@ -419,9 +419,9 @@ int8_t ds3231_time_month_get(rtc_handle_t* rtc_handle) {
         // Power On/Reset may have the month value at 0x00. While this is expected behavior on the DS3132, the strftime() call will
         // shit itself when doing the conversion and crash the the ESP32 with a LoadStoreError panic. tm.tm_mon is the only member
         // that is not 0 based.
-        if (intermediate.ones == 0) {
-            intermediate.ones = 1;
-        }
+        // if (intermediate.ones == 0) {
+        //     intermediate.ones = 1;
+        // }
         free(data_rd);
         return (intermediate.tens * 10) + intermediate.ones;
     }
