@@ -982,9 +982,10 @@ static void ds3231_alarm_interrupt_task(void* arg) {
 }
 
 esp_err_t ds3231_alarm_isr_delete(rtc_handle_t* rtc_handle, gpio_num_t INT) {
-    vTaskDelete(ds3231_isr_task_handle);
-    return ds3231_remove_alarm_interrupt_handler(INT);
+    vTaskDelete(isr_task_handle);
+    return gpio_isr_handler_remove(INT);
 }
+
 esp_err_t ds3231_alarm_isr_create(rtc_handle_t* rtc_handle, gpio_num_t INT, gpio_isr_t isr, void* params) {
     // Configure INT pin on ESP
 
